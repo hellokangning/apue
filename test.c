@@ -1,18 +1,33 @@
 #include "apue.h"
-
-#define BUFFSIZE 4096
+#include <sys/wait.h>
 
 int main(void)
 {
-	int n;
-	char buf[BUFFSIZE];
+	char buf[MAXLINE];
+	pid_t pid;
+	int status;
 
-	while((n = read(STDIN_FILENO, buf, BUFFSIZE)) > 0)
+	printf("%% ");
+	while(fgets(buf, MAXLINE, stdin) != NULL)
 	{
-		if(write(STDOUT_FILENO, buf, n) != n)
-			err_sys("write error");
-	}
+		if(buf[strlen(buf) - 1] == '\n')
+			buf[strlen(buf) - 1] = 0;
 
-	if(n < 0)
-		err_sys("read error");
+		if((pid = fork()) < 0)
+		{
+			err_sys("fork error");
+		}
+		else if(pid == 0)
+		{
+			execlp(buf, buf, (char*)0);
+			err_ret("could not execute: %s", buf);
+			exit(127);
+		}
+
+		if((pid == waitpid(pid, &status, 0)) < 0)
+			err_sys("wait error");
+		printf("%% ");
+	}
+	exit(0);
 }
+
