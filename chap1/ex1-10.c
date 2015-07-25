@@ -1,7 +1,10 @@
 #include "apue.h"
 #include <sys/wait.h>
 
-static void sig_int(int);
+void sig_int(int signo)
+{
+    printf("interrupt\n%% ");
+}
 
 int main(void)
 {
@@ -9,8 +12,8 @@ int main(void)
 	pid_t pid;
 	int status;
 
-	if(signal(SIGINT, sig_int) == SIG_ERR)
-		err_sys("signal error");
+    if (signal(SIGINT, sig_int) == SIG_ERR)
+        err_sys("signal error");
 
 	printf("%% ");
 	while(fgets(buf, MAXLINE, stdin) != NULL)
@@ -36,7 +39,3 @@ int main(void)
 	exit(0);
 }
 
-void sig_int(int signo)
-{
-	printf("interrupt\n%% ");
-}
