@@ -1,3 +1,25 @@
-a.out
 diff
 test.c
+
+# Object files
+*.o
+*.ko
+*.slo
+*.lo
+
+# Libraries
+*.lib
+*.a
+*.lai
+*.la
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
