@@ -158,6 +158,3 @@ static int my_func(const char *pathname, const struct stat *statptr, int type)
     return 0;
 }
 
- 
-      
-    

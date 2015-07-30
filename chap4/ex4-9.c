@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 	umask(S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
 	if(creat("bar", RWRWRW) < 0)
 		err_sys("creat error for bar");
+
 	exit(0);
 }
 
