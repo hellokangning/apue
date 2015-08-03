@@ -3,7 +3,7 @@
 int main(void)
 {
     char buf[MAXLINE];
-    while ((fgets(buf, MAXLINE, stdin) != NULL)
+    while (fgets(buf, MAXLINE, stdin) != NULL)
             if (fputs(buf, stdout) == EOF)
             err_sys("output error");
 
