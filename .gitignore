@@ -1,5 +1,6 @@
 diff
 test.c
+a.out.*
 
 # Object files
 *.o
