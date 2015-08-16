@@ -1,4 +1,5 @@
 #include "apue.h"
+#include <setjmp.h>
 
 #define TOK_ADD 5
 
@@ -13,7 +14,7 @@ int main(void)
     char line[MAXLINE];
 
     if (setjmp(jmpbuffer) != 0)
-        print("error\n");
+        printf("error\n");
 
     while (fgets(line, MAXLINE, stdin) != NULL)
         do_line(line);
